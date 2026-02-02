@@ -91,7 +91,7 @@ export default function ValentinesProposal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            Congratulations! You have completed the game.
+            Finally! I almost fell asleep...
           </motion.h2>
         )}
         {step === 1 && (
@@ -103,7 +103,7 @@ export default function ValentinesProposal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            I have a surprise for you!
+            Roses are red, fruity pebbles taste better after breakfast ...
           </motion.h2>
         )}
         {step === 2 && (
@@ -132,10 +132,10 @@ export default function ValentinesProposal() {
             <h2
               className={`text-5xl font-semibold mb-8 ${playfairDisplay.className}`}
             >
-              Will you be my Valentine?
+              Be my Valentine and let's find out?
             </h2>
             <Image
-              src="/sad_hamster.png"
+              src="/sad_hamster.jpg"
               alt="Sad Hamster"
               width={200}
               height={200}
@@ -174,15 +174,8 @@ export default function ValentinesProposal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            Thank you for accepting, I love you! 💕
-            <p className="text-sm mt-4">For more information, write me!!! 💌</p>
-            <Image
-              src="/hamster_jumping.gif"
-              alt="Hamster Feliz"
-              width={200}
-              height={200}
-              unoptimized
-            />
+            Sunset over drinks - Ripple & Roots, 5:45pm
+            <p className="text-sm mt-4"></p>
           </motion.div>
         )}
       </AnimatePresence>
