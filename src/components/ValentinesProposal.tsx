@@ -88,7 +88,7 @@ export default function ValentinesProposal() {
             className={`text-4xl font-semibold mb-4 ${playfairDisplay.className}`}
             transition={{ duration: 3 }}
             initial={{ opacity: 2 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 3 }}
             exit={{ opacity: 0 }}
           >
             Finally! I almost fell asleep...
@@ -99,8 +99,8 @@ export default function ValentinesProposal() {
             key="step-1"
             className={`text-4xl font-semibold mb-4 ${playfairDisplay.className}`}
             transition={{ duration: 3 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 2 }}
+            animate={{ opacity: 3 }}
             exit={{ opacity: 0 }}
           >
             Roses are red, fruity pebbles taste better after breakfast ...
