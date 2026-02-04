@@ -86,8 +86,8 @@ export default function ValentinesProposal() {
           <motion.h2
             key="step-0"
             className={`text-4xl font-semibold mb-4 ${playfairDisplay.className}`}
-            transition={{ duration: 1 }}
-            initial={{ opacity: 0 }}
+            transition={{ duration: 3 }}
+            initial={{ opacity: 2 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
@@ -109,8 +109,8 @@ export default function ValentinesProposal() {
         {step === 2 && (
           <motion.div
             key="step-2"
-            transition={{ duration: 3 }}
-            initial={{ opacity: 0 }}
+            transition={{ duration: 5 }}
+            initial={{ opacity: 3 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="flex flex-col items-center"
