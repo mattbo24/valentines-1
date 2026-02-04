@@ -80,15 +80,19 @@ export default function ValentinesProposal() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <AnimatePresence mode="wait">
+    <div className="flex flex-col items-center justify-center h-full relative overflow-hidden">
+      {/* Removed mode="wait". 
+        This allows the steps to cross-fade (overlap) rather than 
+        one fading out completely to black before the next fades in.
+      */}
+      <AnimatePresence>
         {step === 0 && (
           <motion.h2
             key="step-0"
-            className={`text-4xl font-semibold mb-4 ${playfairDisplay.className}`}
-            transition={{ duration: 3 }}
-            initial={{ opacity: 2 }}
-            animate={{ opacity: 3 }}
+            className={`text-4xl font-semibold mb-4 absolute ${playfairDisplay.className}`}
+            transition={{ duration: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             Finally! I almost fell asleep...
@@ -97,10 +101,10 @@ export default function ValentinesProposal() {
         {step === 1 && (
           <motion.h2
             key="step-1"
-            className={`text-4xl font-semibold mb-4 ${playfairDisplay.className}`}
+            className={`text-4xl font-semibold mb-4 absolute text-center px-4 ${playfairDisplay.className}`}
             transition={{ duration: 3 }}
-            initial={{ opacity: 2 }}
-            animate={{ opacity: 3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             Roses are red, fruity pebbles taste better after breakfast ...
@@ -109,14 +113,15 @@ export default function ValentinesProposal() {
         {step === 2 && (
           <motion.div
             key="step-2"
-            transition={{ duration: 5 }}
-            initial={{ opacity: 3 }}
+            transition={{ duration: 2 }} // Slightly faster exit to blend with step 3
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center w-full h-full justify-center relative z-10"
           >
             {/* Image Grid Background */}
-            <div className="absolute inset-0 grid grid-cols-6 opacity-10">
+            {/* Increased opacity from 10 to 20 for brightness, added -z-10 */}
+            <div className="absolute inset-0 grid grid-cols-6 opacity-20 -z-10 pointer-events-none">
               {images.slice(0, 36).map((src, index) => (
                 <div key={index} className="relative h-full">
                   <Image
@@ -130,7 +135,7 @@ export default function ValentinesProposal() {
             </div>
 
             <h2
-              className={`text-5xl font-semibold mb-8 ${playfairDisplay.className}`}
+              className={`text-5xl font-semibold mb-8 text-center px-4 ${playfairDisplay.className}`}
             >
               Be my Valentine and let&apos;s find out?
             </h2>
@@ -139,16 +144,17 @@ export default function ValentinesProposal() {
               alt="Sad Hamster"
               width={200}
               height={200}
+              className="rounded-lg shadow-md"
             />
             <div className="flex space-x-4 mt-10">
               <button
-                className="px-6 py-2 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl hover:from-pink-600 hover:to-rose-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="px-6 py-2 text-lg font-semibold text-white bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl hover:from-pink-600 hover:to-rose-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer z-50"
                 onClick={handleYesClick}
               >
                 Yes, I will! 🥰
               </button>
               <button
-                className="px-6 py-2 text-lg font-semibold text-white bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl hover:from-gray-600 hover:to-gray-700 transform hover:scale-95 transition-all duration-300 shadow-lg"
+                className="px-6 py-2 text-lg font-semibold text-white bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl hover:from-gray-600 hover:to-gray-700 transform hover:scale-95 transition-all duration-300 shadow-lg cursor-pointer z-50"
                 style={
                   position
                     ? {
@@ -168,23 +174,34 @@ export default function ValentinesProposal() {
         {step === 3 && (
           <motion.div
             key="step-3"
-            className={`text-4xl font-semibold mb-4 flex flex-col justify-center items-center ${playfairDisplay.className}`}
-            transition={{ duration: 1 }}
+            className={`text-4xl font-semibold mb-4 flex flex-col justify-center items-center absolute w-full text-center ${playfairDisplay.className}`}
+            // Increased duration to 3 seconds for a slower, smoother entry
+            transition={{ duration: 3, ease: "easeInOut" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             Sunset over drinks - Ripple & Roots, 5:45pm
-            <p className="text-sm mt-4"></p>
+            <p className="text-sm mt-4">I knew you&apos;d say yes 😉</p>
           </motion.div>
         )}
       </AnimatePresence>
 
       {showFireworks && (
-        <div className="absolute w-full h-full">
+        <div className="absolute w-full h-full pointer-events-none z-20">
           <Fireworks
             options={{
               autoresize: true,
+              opacity: 0.5,
+              acceleration: 1.05,
+              friction: 0.97,
+              gravity: 1.5,
+              particles: 50,
+              trace: 3,
+              explosion: 5,
+              intensity: 30,
+              flickering: 50,
+              lineStyle: "round",
             }}
             style={{
               width: "100%",
